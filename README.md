@@ -1,6 +1,7 @@
 # Selective Collection
 
 ## Project's General View 
+
 ### Engineer:
 
 - Architecture
@@ -12,17 +13,16 @@
  - [Injection e Routes Modular](https://pub.dev/packages/flutter_modular)
 
 - Build Tools	
-  - [gitAction](https://github.com/features/actions)
+  - [GitAction](https://github.com/features/actions)
 
 ### Back-end:
    - FirebaseAuth
    - Hasura 
-   - Banco de dados Postgres
+   - Database with Postgres
 
 
 ## Project's Guide Lines
 
-- Use vírgula sempre que possível
 ### Nomenclature
 
 - **Folders and Files:** `snake_case`
@@ -38,7 +38,7 @@
 Following the [Clean Architecture proposed by Flutterando](https://github.com/Flutterando/Clean-Dart#clean-dart-1) we obtain 5 layers. For each one was defined how to use paramters.
 
 - **PRESENTER:**
-    - *Reatividade:* Named
+    - *Reactivity:* Named
     - *Controller:* Named (Facade Design Pattern)?
     - *UI:* Named  
 - **DOMAIN:** Positional
@@ -53,14 +53,15 @@ For every layer the rule below must be applied:
 - A `class` for the general theme 
 - Get the Theme from the `context`
 - `Package`implementation for the Design System's Widgets
+
 ### Assets
 
 - Located at the root of the project
-- Folder structure: imagens, fontes, ícones
+- Folder structure: images, fonts, ícons
 - Organization in Code:
     - A `class` of Assets with constants
 
-### Git e Github
+### Git and Github
 - Commits: 
     - [feat, fix, doc, etc.](https://www.conventionalcommits.org/pt-br/v1.0.0/)
     - [Gitmoji](https://gitmoji.dev/)
