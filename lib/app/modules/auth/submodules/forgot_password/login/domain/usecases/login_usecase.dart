@@ -1,7 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../../../../core/shared/failures/i_app_exception.dart';
-import '../entities/login_entity.dart';
 import '../types/params.dart';
 import 'i_login_usecase.dart';
 
@@ -12,8 +11,7 @@ class LoginUsecase implements ILoginUsecase {
   LoginUsecase(this._repository);
 
   @override
-  Future<Either<IAppException, LoginEntity>> call(
-      LoginEmailParams params) async {
+  Future<Either<IAppException, Unit>> call(LoginEmailParams params) async {
     return await _repository(params);
   }
 }
