@@ -1,3 +1,3 @@
 abstract class IDatasource {
-  Future recoveryPasswordByMail(String email);
+  Future<bool> recoveryPasswordByMail(String email);
 }
