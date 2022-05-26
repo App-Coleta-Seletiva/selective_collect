@@ -18,7 +18,7 @@ void main() {
   test('Should return Sucess forgot password reporitory ...', () async {
     final repository = ForgotPasswordRepositoryImpl(datasource: datasouce);
     when(() => datasouce.recoveryPasswordByMail(email))
-        .thenAnswer((_) async => Future.value(true));
+        .thenAnswer((_) async => Future.value(const Right(true)));
     expect(await repository(email), isA<Right>());
   });
 

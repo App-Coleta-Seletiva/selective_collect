@@ -1,3 +1,7 @@
+import 'package:fpdart/fpdart.dart';
+
+import '../../../../../../core/shared/failures/forgot_password_failure.dart';
+
 abstract class IDatasource {
-  Future<bool> recoveryPasswordByMail(String email);
+  Future<Either<Failure, bool>> recoveryPasswordByMail(String email);
 }
