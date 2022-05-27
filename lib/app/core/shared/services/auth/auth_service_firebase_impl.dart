@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
-
 import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.dart';
+
+import '../../failures/forgot_password_failure.dart';
 
 class FirebaseAuthService implements IAuthService {
   final FirebaseAuth _auth;
@@ -14,12 +15,12 @@ class FirebaseAuthService implements IAuthService {
     } on FirebaseAuthException catch (e, stackTrace) {
       switch (e.code) {
         case 'invalid-email':
-          throw AuthException(
+          throw InvalidEmailFailure(
             message: 'Email inválido',
             stackTrace: e.stackTrace ?? stackTrace,
           );
         case 'user-not-found':
-          throw AuthException(
+          throw UserNotFoundFailure(
             message: 'Usuário não encontrado',
             stackTrace: e.stackTrace ?? stackTrace,
           );

@@ -9,16 +9,23 @@ class IAppFailure implements Failure {
   });
 }
 
-class InvalidEmail extends IAppFailure {
-  InvalidEmail({
+class InvalidEmailFailure extends IAppFailure {
+  InvalidEmailFailure({
     String message = "Email Invalido",
     StackTrace? stackTrace,
   }) : super(message: message, stackTrace: stackTrace);
 }
 
-class EmptyEmail extends IAppFailure {
-  EmptyEmail({
+class EmptyEmailFailure extends IAppFailure {
+  EmptyEmailFailure({
     String message = "Favor informar um email",
+    StackTrace? stackTrace,
+  }) : super(message: message, stackTrace: stackTrace);
+}
+
+class UserNotFoundFailure extends IAppFailure {
+  UserNotFoundFailure({
+    String message = "Usuário não encontrado",
     StackTrace? stackTrace,
   }) : super(message: message, stackTrace: stackTrace);
 }

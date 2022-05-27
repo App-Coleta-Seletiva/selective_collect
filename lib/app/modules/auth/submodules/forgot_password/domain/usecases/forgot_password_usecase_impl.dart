@@ -13,13 +13,11 @@ class ForgotPasswordUsecaseImpl extends IForgotPasswordUsecase {
   @override
   Future<Either<Failure, bool>> call(String email) async {
     if (email.isEmpty) {
-      return Left(EmptyEmail());
+      return Left(EmptyEmailFailure());
     }
-
     if (!email.contains("@")) {
-      return Left(InvalidEmail());
+      return Left(InvalidEmailFailure());
     }
-
     return await repository(email);
   }
 }
