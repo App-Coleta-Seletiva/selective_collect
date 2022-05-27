@@ -13,28 +13,23 @@ void main() {
   final ForgotPasswordUsecaseImplMock usecase = ForgotPasswordUsecaseImplMock();
   final ForgotPasswordBloc bloc = ForgotPasswordBloc(usecase);
   const String email = "email@gmail.com";
+  const error = IAppFailure(message: "Error!");
+
   group(
-    "Group: [Forgot Password] ",
-    () => {
+    'forgot password bloc:',
+    () {
       blocTest<ForgotPasswordBloc, ForgotPasswordState>(
-        "Should return [Sucess]",
+        "Should return [🧪 Failure]",
         setUp: () => when(() => usecase.call(email))
-            .thenAnswer((_) async => const Right(true)),
+            .thenAnswer((_) async => const Left(error)),
         build: () => bloc,
         wait: const Duration(microseconds: 200),
         act: (bloc) => bloc.add(RecoverPasswordEvent(email: email)),
-        expect: () => [ForgotPasswordLoading(), ForgotPasswordSucess()],
-      )
+        expect: () => [
+          ForgotPasswordLoading(),
+          ForgotPasswordError(failure: error),
+        ],
+      );
     },
-  );
-
-  blocTest<ForgotPasswordBloc, ForgotPasswordState>(
-    "Should return [Failure] for forgot pasword",
-    setUp: () =>
-        when(() => usecase(email)).thenThrow(() => Left(InvalidEmailFailure())),
-    build: () => bloc,
-    wait: const Duration(microseconds: 200),
-    act: (bloc) => bloc.add(RecoverPasswordEvent(email: email)),
-    expect: () => [ForgotPasswordLoading(), ForgotPasswordSucess()],
   );
 }
