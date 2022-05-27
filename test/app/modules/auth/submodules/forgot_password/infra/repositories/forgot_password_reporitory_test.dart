@@ -15,35 +15,34 @@ Future<void> main() async {
 
   setUpAll(() {
     service = FirebaseAuthServiceMock();
-
     email = "email@gmail.com";
     inexistEmail = "naoexiste@gmail.com";
     invalidEmail = "invalido.gmail.com";
   });
 
-  test('Should return Sucess forgot password reporitory ...', () async {
-    final repository = ForgotPasswordRepositoryImpl(service: service);
-    when(() => service.forgotPassword(email))
-        .thenAnswer((_) async => Future<void>);
-    expect(await repository(email), isA<Right>());
-  });
+  group("forgot password reporitory:", () {
+    test('Should return [✅ Sucess]', () async {
+      final repository = ForgotPasswordRepositoryImpl(service: service);
+      when(() => service.forgotPassword(email))
+          .thenAnswer((_) async => Future<void>);
+      expect(await repository(email), isA<Right>());
+    });
 
-  test('Should return UserNotFoundFailure forgot password reporitory ...',
-      () async {
-    final repository = ForgotPasswordRepositoryImpl(service: service);
-    when(() => service.forgotPassword(inexistEmail))
-        .thenThrow(UserNotFoundFailure());
+    test('Should return [🧪 Failure] - UserNotFoundFailure', () async {
+      final repository = ForgotPasswordRepositoryImpl(service: service);
+      when(() => service.forgotPassword(inexistEmail))
+          .thenThrow(UserNotFoundFailure());
 
-    var result = await repository(inexistEmail);
-    expect(result, isA<Left>());
-  });
+      var result = await repository(inexistEmail);
+      expect(result, isA<Left>());
+    });
 
-  test('Should return InvalidEmailFailure forgot password reporitory ...',
-      () async {
-    final repository = ForgotPasswordRepositoryImpl(service: service);
-    when(() => service.forgotPassword(invalidEmail))
-        .thenThrow(InvalidEmailFailure());
+    test('Should return [🧪 Failure] - InvalidEmailFailure', () async {
+      final repository = ForgotPasswordRepositoryImpl(service: service);
+      when(() => service.forgotPassword(invalidEmail))
+          .thenThrow(InvalidEmailFailure());
 
-    expect(await repository(invalidEmail), isA<Left>());
+      expect(await repository(invalidEmail), isA<Left>());
+    });
   });
 }
