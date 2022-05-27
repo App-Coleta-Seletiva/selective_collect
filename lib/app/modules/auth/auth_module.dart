@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'submodules/forgot_password/presenter/forgot_password_module.dart';
+import 'submodules/forgot_password/forgot_password_module.dart';
 
 class AuthModule extends Module {
   @override
