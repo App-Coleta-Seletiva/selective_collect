@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:selective_collect/app/core/shared/failures/errors.dart';
+import 'package:selective_collect/app/core/types/either.dart';
 import 'package:selective_collect/app/modules/auth/submodules/forgot_password/login/domain/repositories/i_login_repository.dart';
 import 'package:selective_collect/app/modules/auth/submodules/forgot_password/login/domain/usecases/i_login_usecase.dart';
 import 'package:selective_collect/app/modules/auth/submodules/forgot_password/login/domain/usecases/login_usecase.dart';
@@ -24,7 +24,7 @@ void main() {
     final unit = UnitMock();
 
     when(() => repository.call(params)).thenAnswer(
-      (_) async => Right(unit),
+      (_) async => right(unit),
     );
 
     //ACT
@@ -37,8 +37,9 @@ void main() {
     final params = LoginEmailParamsMock();
 
     when(() => repository.call(params)).thenAnswer(
-      (_) async => const Left(
-        PasswordError(message: 'error params', stackTrace: StackTrace.empty),
+      (_) async => left(
+        const PasswordError(
+            message: 'error params', stackTrace: StackTrace.empty),
       ),
     );
     //ACT

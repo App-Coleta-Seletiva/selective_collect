@@ -1,8 +1,7 @@
-import 'package:fpdart/fpdart.dart';
 import '../../../../../../../core/shared/failures/exceptions.dart';
+import '../../../../../../../core/types/either.dart';
 import '../../infra/datasource/i_login_datasoure.dart';
 
-import '../../../../../../../core/shared/failures/i_app_exception.dart';
 import 'i_login_repository.dart';
 import '../types/params.dart';
 
@@ -24,16 +23,16 @@ class LoginRepository implements ILoginRepository {
 
     try {
       await _datasource(params);
-      return Right(unit);
+      return right(unit);
     } on AuthException catch (e, s) {
-      return Left(
+      return left(
         AuthException(
           message: e.toString(),
           stackTrace: s,
         ),
       );
     } catch (e) {
-      return Left(
+      return left(
         AuthException(
           message: e.toString(),
           stackTrace: StackTrace.empty,
