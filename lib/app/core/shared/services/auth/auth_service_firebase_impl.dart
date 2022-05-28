@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
-import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.dart';
 
+import '../../failures/exceptions.dart';
 import '../../failures/forgot_password_failure.dart';
+import 'i_auth_service.dart';
 
 class FirebaseAuthService implements IAuthService {
   final FirebaseAuth _auth;

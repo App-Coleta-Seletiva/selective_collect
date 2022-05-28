@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:selective_collect/app/core/shared/failures/forgot_password_failure.dart';
-import 'package:selective_collect/app/modules/auth/submodules/forgot_password/domain/usecases/i_forgot_password_usecase.dart';
+
+import '../../../../../../../core/shared/failures/forgot_password_failure.dart';
+import '../../../domain/usecases/i_forgot_password_usecase.dart';
 
 part 'forgot_password_event.dart';
 part 'forgot_password_state.dart';
