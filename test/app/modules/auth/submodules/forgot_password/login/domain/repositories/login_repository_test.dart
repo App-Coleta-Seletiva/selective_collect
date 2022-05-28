@@ -21,8 +21,7 @@ void main() {
   test('Deve retornar um objeto Unit', () async {
     //Arrange
     final params = LoginEmailParamsMock();
-    when(() => datasouce.call(params))
-        .thenAnswer((_) async => right(UnitMock()));
+    when(() => datasouce.call(params)).thenAnswer((_) async => UnitMock());
 
     //ACT
     final result = await repository(params);
