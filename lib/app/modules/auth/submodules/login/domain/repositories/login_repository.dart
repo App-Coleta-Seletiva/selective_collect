@@ -1,5 +1,5 @@
-import '../../../../../../../core/shared/failures/exceptions.dart';
-import '../../../../../../../core/types/either.dart';
+import '../../../../../../core/shared/failures/exceptions.dart';
+import '../../../../../../core/types/either.dart';
 import '../../infra/datasource/i_login_datasoure.dart';
 
 import 'i_login_repository.dart';
@@ -12,15 +12,6 @@ class LoginRepository implements ILoginRepository {
 
   @override
   Future<Either<AuthException, Unit>> call(LoginEmailParams params) async {
-    // try {
-    //   await _datasouce(params);
-    //   return const Right(unit);
-    // } on AuthException catch (e) {
-    //   return Left(e);
-    // } catch (e, s) {
-    //   return Left(AuthException(message: e.toString(), stackTrace: s));
-    // }
-
     try {
       await _datasource(params);
       return right(unit);

@@ -1,5 +1,5 @@
-import '../../../../../../core/shared/services/auth/i_auth_service.dart';
-import '../../../../../../core/types/either.dart';
+import '../../../../../core/shared/services/auth/i_auth_service.dart';
+import '../../../../../core/types/either.dart';
 import '../domain/types/params.dart';
 import '../infra/datasource/i_login_datasoure.dart';
 

@@ -2,11 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:selective_collect/app/core/shared/failures/errors.dart';
 import 'package:selective_collect/app/core/types/either.dart';
-import 'package:selective_collect/app/modules/auth/submodules/forgot_password/login/domain/repositories/i_login_repository.dart';
-import 'package:selective_collect/app/modules/auth/submodules/forgot_password/login/domain/usecases/i_login_usecase.dart';
-import 'package:selective_collect/app/modules/auth/submodules/forgot_password/login/domain/usecases/login_usecase.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/domain/repositories/i_login_repository.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/i_login_usecase.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/login_usecase.dart';
 
-import '../../../../../../../mock/mock.dart';
+import '../../../../../../mock/mock.dart';
 
 void main() {
   late ILoginUsecase loginUsecase;
@@ -18,7 +18,7 @@ void main() {
     loginUsecase = LoginUsecase(repository);
   });
 
-  test('must complete the call to login usecase', () async {
+  test('Must complete the call to login usecase', () async {
     //Arrange
     final params = LoginEmailParamsMock();
     final unit = UnitMock();
@@ -33,7 +33,7 @@ void main() {
     expect(loginUsecase(params), completes);
   });
 
-  test('must complete call and return exception', () async {
+  test('Must complete call and return exception', () async {
     final params = LoginEmailParamsMock();
 
     when(() => repository.call(params)).thenAnswer(
