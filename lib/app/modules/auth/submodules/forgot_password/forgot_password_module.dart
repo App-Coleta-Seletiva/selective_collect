@@ -4,7 +4,7 @@ import '../../../../core/shared/services/auth/i_auth_service.dart';
 import 'domain/usecases/forgot_password_usecase_impl.dart';
 import 'infra/repositories/forgot_password_reporitory.dart';
 import 'presenter/ui/bloc/forgot_password_bloc.dart';
-import 'presenter/ui/forgot_password_page.dart';
+import 'presenter/ui/pages/forgot_password_page.dart';
 
 class ForgotPasswordModule extends Module {
   @override
