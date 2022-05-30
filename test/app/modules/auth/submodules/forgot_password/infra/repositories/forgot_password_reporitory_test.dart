@@ -44,5 +44,13 @@ Future<void> main() async {
 
       expect(await repository(invalidEmail), isA<Left>());
     });
+
+    test('Should return [🧪 Failure] - IAppFailure', () async {
+      final repository = ForgotPasswordRepositoryImpl(service: service);
+      when(() => service.forgotPassword(invalidEmail))
+          .thenThrow(Exception("Error não tratado"));
+
+      expect(await repository(invalidEmail), isA<Left>());
+    });
   });
 }
