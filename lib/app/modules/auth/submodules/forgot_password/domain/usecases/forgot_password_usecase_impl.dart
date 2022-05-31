@@ -14,7 +14,7 @@ class ForgotPasswordUsecaseImpl extends IForgotPasswordUsecase {
     if (email.isEmpty) {
       return left(EmptyEmailFailure());
     }
-    if (!email.contains("@")) {
+    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
       return left(InvalidEmailFailure());
     }
     return await repository(email);
