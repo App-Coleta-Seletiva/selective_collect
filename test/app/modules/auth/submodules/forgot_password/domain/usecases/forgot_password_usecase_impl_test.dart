@@ -41,7 +41,7 @@ main() {
       expect(response.fold(id, id), isA<InvalidEmailFailure>());
     });
 
-    test('Shold return [🧪 Error] - User not found', () async {
+    test('Should return [🧪 Error] - User not found', () async {
       when(() => repository(email))
           .thenAnswer((_) async => left(UserNotFoundFailure()));
       final response = await usecase(email);
