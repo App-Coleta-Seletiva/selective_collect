@@ -1,6 +1,6 @@
 import 'package:selective_collect/app/modules/auth/submodules/register/domain/entities/address_entity.dart';
 
-class RegisterPersonEntity {
+class RegisterEntity {
 
   final String name;
   final String cpfCnpj;
@@ -13,7 +13,7 @@ class RegisterPersonEntity {
   final AddressEntity adress;
 
 
-  RegisterPersonEntity({
+  RegisterEntity({
  
     required this.name,
     required this.cpfCnpj,
