@@ -1,6 +1,5 @@
-import 'package:fpdart/fpdart.dart';
-
 import '../../../../../../core/shared/failures/forgot_password_failure.dart';
+import '../../../../../../core/types/either.dart';
 import '../repositories/i_forgot_password_reporitory.dart';
 import 'i_forgot_password_usecase.dart';
 
@@ -13,10 +12,10 @@ class ForgotPasswordUsecaseImpl extends IForgotPasswordUsecase {
   @override
   Future<Either<Failure, bool>> call(String email) async {
     if (email.isEmpty) {
-      return Left(EmptyEmailFailure());
+      return left(EmptyEmailFailure());
     }
     if (!email.contains("@")) {
-      return Left(InvalidEmailFailure());
+      return left(InvalidEmailFailure());
     }
     return await repository(email);
   }
