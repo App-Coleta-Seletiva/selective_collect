@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
 import 'package:selective_collect/app/core/shared/failures/forgot_password_failure.dart';
 import 'package:selective_collect/app/core/shared/services/auth/auth_service_firebase_impl.dart';
 
@@ -46,13 +45,13 @@ void main() {
       await expectLater(future, throwsA(isA<UserNotFoundFailure>()));
     });
 
-    test('should return [🧪 Failure] - AuthException', () async {
-      when(() => auth.sendPasswordResetEmail(email: email)).thenThrow(
+    test('should return [🧪 Failure] - IAppFailure', () async {
+      when(() => auth.sendPasswordResetEmail(email: "")).thenThrow(
         FirebaseAuthException(code: 'error-no-tratado'),
       );
 
-      var future = service.forgotPassword(email);
-      await expectLater(future, throwsA(isA<AuthException>()));
+      var future = service.forgotPassword("");
+      await expectLater(future, throwsA(isA<IAppFailure>()));
     });
   });
 }

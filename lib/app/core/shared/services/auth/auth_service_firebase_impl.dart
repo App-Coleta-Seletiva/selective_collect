@@ -26,7 +26,7 @@ class FirebaseAuthService implements IAuthService {
           );
 
         default:
-          throw AuthException(
+          throw IAppFailure(
             message: 'Erro em recuperar a senha',
             stackTrace: e.stackTrace ?? stackTrace,
           );
