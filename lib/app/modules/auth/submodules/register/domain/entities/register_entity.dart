@@ -1,11 +1,29 @@
-class RegisterEntity {
-  final String email;
-  final String password;
-  final String? uuid;
+import 'package:selective_collect/app/modules/auth/submodules/register/domain/entities/address_entity.dart';
 
-  RegisterEntity(
-    this.uuid, {
+class RegisterPersonEntity {
+
+  final String name;
+  final String cpfCnpj;
+  final String typePerson;
+  final int idUser;
+  final bool collector;
+  final String email;
+  final String imageUrl;
+  final double rating;
+  final AddressEntity adress;
+
+
+  RegisterPersonEntity({
+ 
+    required this.name,
+    required this.cpfCnpj,
+    required this.typePerson,
+    required this.idUser,
+    required this.collector,
     required this.email,
-    required this.password,
+    required this.imageUrl,
+    required this.rating,
+    required this.adress,
   });
 }
+

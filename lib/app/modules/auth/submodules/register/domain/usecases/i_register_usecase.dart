@@ -1,9 +1,2 @@
-import '../../../../../../core/types/either.dart';
-import '../entities/register_entity.dart';
-
-import '../../../../../../core/shared/failures/i_app_exception.dart';
-
-abstract class IRegisterUsecase {
-  Future<Either<IAppException, RegisterEntity>>call();
-}
-
+//o que a classe register deve fazer?
+//* Deve registrar um 
