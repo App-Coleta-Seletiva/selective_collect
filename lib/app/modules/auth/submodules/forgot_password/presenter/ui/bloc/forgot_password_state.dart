@@ -1,7 +1,7 @@
 part of 'forgot_password_bloc.dart';
 
 @immutable
-abstract class ForgotPasswordState extends Equatable {
+abstract class ForgotPasswordState extends EqualHashOperator {
   @override
   List<Object?> get props => [];
 }

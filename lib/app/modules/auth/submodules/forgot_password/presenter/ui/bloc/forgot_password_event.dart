@@ -1,7 +1,7 @@
 part of 'forgot_password_bloc.dart';
 
 @immutable
-abstract class ForgotPasswordEvent extends Equatable {}
+abstract class ForgotPasswordEvent extends EqualHashOperator {}
 
 class RecoverPasswordEvent extends ForgotPasswordEvent {
   final String email;

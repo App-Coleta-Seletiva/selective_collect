@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../../../core/shared/equal_hash_operator/equal_hash_operator.dart';
 import '../../../../../../../core/shared/failures/forgot_password_failure.dart';
 import '../../../domain/usecases/i_forgot_password_usecase.dart';
 
