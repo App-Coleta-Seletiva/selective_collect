@@ -1,29 +1,14 @@
-import 'package:selective_collect/app/modules/auth/submodules/register/domain/entities/address_entity.dart';
-
 class RegisterEntity {
-
-  final String name;
-  final String cpfCnpj;
-  final String typePerson;
-  final int idUser;
-  final bool collector;
+  final int? id;  //* um novo usuário não possui id antes de ser salvo na base de dados?
   final String email;
-  final String imageUrl;
-  final double rating;
-  final AddressEntity adress;
+  final String username;
+  final String? uuid;  //* um novo usuário não possui uuid antes de ser cadastrado na api de login?
 
 
   RegisterEntity({
- 
-    required this.name,
-    required this.cpfCnpj,
-    required this.typePerson,
-    required this.idUser,
-    required this.collector,
+    this.id,
     required this.email,
-    required this.imageUrl,
-    required this.rating,
-    required this.adress,
+    required this.username,
+    this.uuid,
   });
 }
-

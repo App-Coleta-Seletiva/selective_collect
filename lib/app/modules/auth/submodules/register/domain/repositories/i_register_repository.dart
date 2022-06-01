@@ -4,6 +4,6 @@ import '../entities/register_entity.dart';
 
 abstract class IRegisterRepository {
   
-  Future<Either<IAppException,void>> call(RegisterEntity register);
+  Future<Either<IAppException,void>> call(RegisterEntity register);// void ou bool?
 
 }

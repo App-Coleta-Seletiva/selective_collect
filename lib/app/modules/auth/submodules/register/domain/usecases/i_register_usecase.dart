@@ -3,5 +3,5 @@ import '../../../../../../core/types/either.dart';
 import '../entities/register_entity.dart';
 
 abstract class IRegisterUsecase{  
-   Future<Either<IAppException, void>> call(RegisterEntity register);
+   Future<Either<IAppException, void>> call(RegisterEntity register); //void ou bool?
 }

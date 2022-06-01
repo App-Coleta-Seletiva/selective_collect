@@ -12,18 +12,9 @@ class RegisterUsecaseImpl implements IRegisterUsecase {
 
   @override
   Future<Either<IAppException, void>> call(RegisterEntity register) async {
-
-    //falta implementar.
-    
-    /* --Validações para registrar o usuário --.
-    // Usuário já esta registrado?
-    // campo nome esta vazio?
-    // CPF/CNPJ é valido?
-    // Telefone é válido?
-    // Email é válido?
-    // cep é valido? busca api de cadastro de endereços?
-    */
-
+   // * validações: quais?
+      
+  
     return repository(register);
    
   }  
