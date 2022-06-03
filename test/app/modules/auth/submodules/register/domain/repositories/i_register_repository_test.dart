@@ -7,7 +7,7 @@ import 'package:selective_collect/app/modules/auth/submodules/register/domain/re
 import 'package:selective_collect/app/modules/auth/submodules/register/domain/types/register_params.dart';
 
 void main() {
-  late RegisterRepositoryMock repository;
+  late IRegisterRepository repository;
   late RegisterParamMock params;
   late UnitMock unit;
 
@@ -17,7 +17,7 @@ void main() {
     unit = UnitMock();
   });
 
-  group('Success: ', () {
+  group('RegisterRepository Test - Success: ', () {
     test('should return a rigth unit', () async {
       when(() => repository(params)).thenAnswer((_) async => right(unit));
       final result = await repository(params);
@@ -25,7 +25,7 @@ void main() {
     });
   });
 
-  group('Erros: ', () {
+  group('RegisterRepository Test - Erros: ', () {
     test('Should return a failure IAppException to EmailError', () async {
       when(() => repository(params))
           .thenAnswer((invocation) async => left(const EmailError()));
