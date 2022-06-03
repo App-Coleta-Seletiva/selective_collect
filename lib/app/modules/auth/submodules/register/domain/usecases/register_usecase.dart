@@ -21,7 +21,7 @@ class RegisterUsecaseImpl implements IRegisterUsecase {
     if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(params.email)) {
       return left(const EmailError());
     }
-    if (params.email.length < 8) {
+    if (params.password.length < 8) {
       return left(const PasswordError());
     }
 
