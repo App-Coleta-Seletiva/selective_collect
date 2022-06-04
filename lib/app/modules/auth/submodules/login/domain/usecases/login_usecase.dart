@@ -1,3 +1,6 @@
+import '../../../../../../core/shared/failures/exceptions.dart';
+import '../../../../../../core/shared/value_objects/login_parameters_type.dart';
+
 import '../../../../../../core/shared/failures/i_app_exception.dart';
 import '../../../../../../core/types/either.dart';
 import '../types/params.dart';
@@ -11,6 +14,12 @@ class LoginUsecase implements ILoginUsecase {
 
   @override
   Future<Either<IAppException, Unit>> call(LoginEmailParams params) async {
-    return await _repository(params);
+    try {
+      LoginParametersType(email: params.email, password: params.password);
+    } on AuthException catch (e) {
+      throw AuthException(
+          message: e.message.toString(), stackTrace: e.stackTrace);
+    }
+    return await _repository.login(params);
   }
 }

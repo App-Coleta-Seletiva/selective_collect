@@ -6,8 +6,7 @@ import '../infra/datasource/i_login_datasoure.dart';
 class LoginDatasourse implements ILoginDatasouce {
   final IAuthService _authService;
 
-  LoginDatasourse({required IAuthService authService})
-      : _authService = authService;
+  LoginDatasourse(IAuthService authService) : _authService = authService;
 
   @override
   Future<Unit> call(LoginEmailParams params) async {
