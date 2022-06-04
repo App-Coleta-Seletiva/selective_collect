@@ -2,9 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:selective_collect/app/core/shared/failures/i_app_exception.dart';
 import 'package:selective_collect/app/core/shared/failures/register_errors.dart';
+import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.dart';
 import 'package:selective_collect/app/core/types/either.dart';
 import 'package:selective_collect/app/modules/auth/submodules/register/domain/repositories/i_register_repository.dart';
-import 'package:selective_collect/app/modules/auth/submodules/register/domain/types/register_params.dart';
 
 void main() {
   late IRegisterRepository repository;
@@ -48,6 +48,6 @@ void main() {
 
 class RegisterRepositoryMock extends Mock implements IRegisterRepository {}
 
-class RegisterParamMock extends Mock implements RegisterParams {}
+class RegisterParamMock extends Mock implements RegisterWithEmailParam {}
 
 class UnitMock extends Mock implements Unit {}
