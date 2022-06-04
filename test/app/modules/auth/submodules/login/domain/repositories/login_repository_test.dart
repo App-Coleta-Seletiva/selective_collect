@@ -24,7 +24,7 @@ void main() {
     when(() => datasouce.call(params)).thenAnswer((_) async => UnitMock());
 
     //ACT
-    final result = await repository(params);
+    final result = await repository.login(params);
 
     //EXPECT
     expect(result.fold((l) => l, (r) => r), isA<Unit>());
@@ -38,7 +38,7 @@ void main() {
         left(const AuthException(message: 'De erro meu fi', stackTrace: null)));
 
     //ACT
-    final result = await repository(params);
+    final result = await repository.login(params);
 
     //EXPECT
     expect(result.fold((l) => l, (r) => r), isA<AuthException>());
