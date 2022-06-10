@@ -1,32 +1,38 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
 import 'package:selective_collect/app/core/shared/value_objects/login_parameters_type.dart';
 
 void main() {
-  test(
-      'should return an instance of LoginParatersType'
-      'if email password and works correct', () {
+  test('should return true if correct email', () {
     //Arrange
-    final params =
-        LoginParametersType(email: 'teste@gmail.com', password: '123456789');
+    final params = LoginParametersType.validateEmail('teste@gmail.com');
     //ACT
 
     //Expect
-    expect(params, isA<LoginParametersType>());
+    expect(params, true);
   });
 
-  test('should return an exception if the email does not contain @', () {
+  test('should return true if correct password', () {
+    //Arrange
+    final params = LoginParametersType.validatePassword('123456789');
+
     //Expect
-    expect(
-        () =>
-            LoginParametersType(email: 'testegmail.com', password: '123456789'),
-        throwsA(isA<AuthException>()));
+    expect(params, true);
   });
 
-  test('should return an exception if password is less than 8', () {
+  test('should return false if incorrect email', () {
+    //Arrange
+    final params = LoginParametersType.validateEmail('testegmail.com');
+    //ACT
+
     //Expect
-    expect(
-        () => LoginParametersType(email: 'teste@gmail.com', password: '6789'),
-        throwsA(isA<AuthException>()));
+    expect(params, false);
+  });
+
+  test('should return false if incorrect password', () {
+    //Arrange
+    final params = LoginParametersType.validatePassword('123456');
+
+    //Expect
+    expect(params, false);
   });
 }

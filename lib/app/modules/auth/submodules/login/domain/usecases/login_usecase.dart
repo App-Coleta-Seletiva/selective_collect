@@ -14,12 +14,16 @@ class LoginUsecase implements ILoginUsecase {
 
   @override
   Future<Either<IAppException, Unit>> call(LoginEmailParams params) async {
-    try {
-      LoginParametersType(email: params.email, password: params.password);
-    } on AuthException catch (e) {
-      throw AuthException(
-          message: e.message.toString(), stackTrace: e.stackTrace);
+    if (!LoginParametersType.validateEmail(params.email)) {
+      return left(AuthException(
+          message: 'Deve conter @', stackTrace: StackTrace.current));
     }
+    if (!LoginParametersType.validatePassword(params.password)) {
+      return left(AuthException(
+          message: 'Senha deve conter mais de 8 Caracteres',
+          stackTrace: StackTrace.current));
+    }
+
     return await _repository.login(params);
   }
 }

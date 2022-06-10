@@ -40,19 +40,39 @@ void main() {
     //Arrange
     final paramsError =
         LoginEmailParams(email: 'teste123gmail.com', password: '12345678');
+
+    when(() => repository.login(paramsError)).thenThrow(
+      (_) => left(AuthException(
+          message: 'Deve conter @', stackTrace: StackTrace.current)),
+    );
+
     //ACT
+    final result = await loginUsecase(paramsError);
 
     //Expect
-    expect(loginUsecase(paramsError), throwsA(isA<AuthException>()));
+    expect(result.fold((l) => l, (r) => r), isA<AuthException>());
+    expect(result.fold((l) => l.message, (r) => r), 'Deve conter @');
   });
 
   test('Should return AuthExeption if password is less than 8', () async {
     //Arrange
     final paramsError =
         LoginEmailParams(email: 'teste123@gmail.com', password: '5678');
+
+    when(() => repository.login(paramsError)).thenThrow(
+      (_) => left(
+        AuthException(
+            message: 'Senha deve conter mais de 8 Caracteres',
+            stackTrace: StackTrace.current),
+      ),
+    );
+
     //ACT
+    final result = await loginUsecase(paramsError);
 
     //Expect
-    expect(loginUsecase(paramsError), throwsA(isA<AuthException>()));
+    expect(result.fold((l) => l, (r) => r), isA<AuthException>());
+    expect(result.fold((l) => l.message, (r) => r),
+        'Senha deve conter mais de 8 Caracteres');
   });
 }
