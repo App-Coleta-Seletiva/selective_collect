@@ -37,6 +37,7 @@ class FirebaseAuthService implements IAuthService {
   UserEntityService? getCurrentUser() {
     final user = _auth.currentUser;
     if (user != null) {
+      
       return UserEntityService(user.email!);
     } else {
       return null;

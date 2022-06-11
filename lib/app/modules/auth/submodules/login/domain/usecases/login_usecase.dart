@@ -3,7 +3,7 @@ import '../../../../../../core/shared/value_objects/login_parameters_type.dart';
 
 import '../../../../../../core/shared/failures/i_app_exception.dart';
 import '../../../../../../core/types/either.dart';
-import '../types/params.dart';
+import '../types/params_type.dart';
 import 'i_login_usecase.dart';
 
 import '../repositories/i_login_repository.dart';
@@ -13,7 +13,7 @@ class LoginUsecase implements ILoginUsecase {
   LoginUsecase(this._repository);
 
   @override
-  Future<Either<IAppException, Unit>> call(LoginEmailParams params) async {
+  Future<Either<IAppException, Unit>> call(LoginEmailParamsType params) async {
     if (!LoginParametersType.validateEmail(params.email)) {
       return left(AuthException(
           message: 'Deve conter @', stackTrace: StackTrace.current));

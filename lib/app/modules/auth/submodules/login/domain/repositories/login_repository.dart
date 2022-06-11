@@ -3,7 +3,7 @@ import '../../../../../../core/types/either.dart';
 import '../../infra/datasource/i_login_datasoure.dart';
 
 import 'i_login_repository.dart';
-import '../types/params.dart';
+import '../types/params_type.dart';
 
 class LoginRepository implements ILoginRepository {
   final ILoginDatasouce _datasource;
@@ -11,7 +11,7 @@ class LoginRepository implements ILoginRepository {
   LoginRepository(this._datasource);
 
   @override
-  Future<Either<AuthException, Unit>> login(LoginEmailParams params) async {
+  Future<Either<AuthException, Unit>> login(LoginEmailParamsType params) async {
     try {
       await _datasource(params);
       return right(unit);

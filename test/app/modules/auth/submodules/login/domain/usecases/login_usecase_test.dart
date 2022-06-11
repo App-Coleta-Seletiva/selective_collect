@@ -3,7 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
 import 'package:selective_collect/app/core/types/either.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/repositories/i_login_repository.dart';
-import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/i_login_usecase.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/login_usecase.dart';
 
@@ -15,7 +15,7 @@ void main() {
   late ILoginRepository repository;
 
   final params =
-      LoginEmailParams(email: 'teste123@gmail.com', password: '12345678');
+      LoginEmailParamsType(email: 'teste123@gmail.com', password: '12345678');
 
   setUp(() {
     repository = RepositoryMock();
@@ -39,7 +39,7 @@ void main() {
   test('Should return AuthExeption if email does not contain @', () async {
     //Arrange
     final paramsError =
-        LoginEmailParams(email: 'teste123gmail.com', password: '12345678');
+        LoginEmailParamsType(email: 'teste123gmail.com', password: '12345678');
 
     when(() => repository.login(paramsError)).thenThrow(
       (_) => left(AuthException(
@@ -57,7 +57,7 @@ void main() {
   test('Should return AuthExeption if password is less than 8', () async {
     //Arrange
     final paramsError =
-        LoginEmailParams(email: 'teste123@gmail.com', password: '5678');
+        LoginEmailParamsType(email: 'teste123@gmail.com', password: '5678');
 
     when(() => repository.login(paramsError)).thenThrow(
       (_) => left(

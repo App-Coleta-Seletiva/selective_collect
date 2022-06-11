@@ -1,6 +1,6 @@
-import '../../../../../../core/types/either.dart';
-import '../../domain/types/params.dart';
+
+import '../../domain/types/params_type.dart';
 
 abstract class ILoginDatasouce {
-  Future<Unit> call(LoginEmailParams params);
+  Future<dynamic> call(LoginEmailParamsType params);
 }
