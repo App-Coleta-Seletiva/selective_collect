@@ -4,6 +4,6 @@ import '../../../../../../core/types/either.dart';
 
 abstract class IRegisterRepository {
   Future<Either<IAppException, Unit>> call(
-      RegisterWithEmailParam params); // void ou bool?
+      RegisterWithEmailParam params); 
 
 }

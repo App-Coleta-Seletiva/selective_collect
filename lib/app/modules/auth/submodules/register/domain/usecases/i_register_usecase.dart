@@ -4,5 +4,5 @@ import '../../../../../../core/types/either.dart';
 
 abstract class IRegisterUsecase {
   Future<Either<IAppException, Unit>> call(
-      RegisterWithEmailParam params); //void ou bool?
+      RegisterWithEmailParam params);
 }
