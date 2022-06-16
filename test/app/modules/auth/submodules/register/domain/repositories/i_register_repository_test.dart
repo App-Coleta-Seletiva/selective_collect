@@ -28,7 +28,7 @@ void main() {
   group('RegisterRepository Test - Erros: ', () {
     test('Should return a failure IAppException to EmailError', () async {
       when(() => repository(params))
-          .thenAnswer((invocation) async => left(const EmailError()));
+          .thenAnswer((invocation) async => left(EmailError()));
 
       final result = await repository(params);
 
@@ -37,7 +37,7 @@ void main() {
 
     test('Should return a failure IAppException to PasswordError', () async {
       when(() => repository(params))
-          .thenAnswer((invocation) async => left(const PasswordError()));
+          .thenAnswer((invocation) async => left(PasswordError()));
 
       final result = await repository(params);
 
