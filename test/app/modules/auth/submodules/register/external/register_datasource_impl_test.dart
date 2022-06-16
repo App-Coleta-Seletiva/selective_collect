@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:selective_collect/app/core/shared/failures/i_app_exception.dart';
 import 'package:selective_collect/app/core/shared/services/auth/auth_service_firebase_impl.dart';
 import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.dart';
 import 'package:selective_collect/app/core/types/either.dart';
