@@ -11,22 +11,57 @@ import 'package:selective_collect/app/modules/auth/submodules/register/presenter
 import 'package:selective_collect/app/modules/auth/submodules/register/presenter/ui/bloc/register_states.dart';
 
 void main() {
-  IAuthService service;
-  RegisterWithEmailParam params = const RegisterWithEmailParam(
-      email: 'email@email.com', password: 'paassaaaa');
+  late IAuthService service;
+  late RegisterWithEmailParam params;
+  setUp(() {
+    service = FirebaseMock();
+  });
 
-  blocTest<RegisterBloc, RegisterState>(
-      'should return a state of loading and Success',
-      build: () {
-        service = FirebaseMock();
-        return RegisterBloc(RegisterUsecaseImpl(
-            RegisterRepositoryImpl(RegisterDatasourceImpl(service))));
-      },
-      act: (bloc) => bloc.add(RegisterUser(params)),
-      expect: () => [
-            isA<LoadingRegisterState>(),
-            isA<SuccessRegisterState>(),
-          ]);
+  group('RegisterPage Test - Sucess.', () {
+    blocTest<RegisterBloc, RegisterState>(
+        'should return a state of loading and Success',
+        setUp: () => params = const RegisterWithEmailParam(
+            email: 'email@email.com', password: '12345678'),
+        build: () {
+          return RegisterBloc(RegisterUsecaseImpl(
+              RegisterRepositoryImpl(RegisterDatasourceImpl(service))));
+        },
+        act: (bloc) => bloc.add(RegisterUser(params)),
+        expect: () => [
+              isA<LoadingRegisterState>(),
+              isA<SuccessRegisterState>(),
+            ]);
+  });
+
+  group('RegisterPage Test - Exception.', () {
+    blocTest<RegisterBloc, RegisterState>(
+        'should return a state of loading and Exception when e-mail is incorrect',
+        setUp: () => params = const RegisterWithEmailParam(
+            email: 'emailemail.com', password: '12345678'),
+        build: () {
+          return RegisterBloc(RegisterUsecaseImpl(
+              RegisterRepositoryImpl(RegisterDatasourceImpl(service))));
+        },
+        act: (bloc) => bloc.add(RegisterUser(params)),
+        expect: () => [
+              isA<LoadingRegisterState>(),
+              isA<ExceptionRegisterState>(),
+            ]);
+
+    blocTest<RegisterBloc, RegisterState>(
+        'should return a state of loading and Exception when password is incorrect',
+        setUp: () => params = const RegisterWithEmailParam(
+            email: 'email@email.com', password: '1234567'),
+        build: () {
+          return RegisterBloc(RegisterUsecaseImpl(
+              RegisterRepositoryImpl(RegisterDatasourceImpl(service))));
+        },
+        act: (bloc) => bloc.add(RegisterUser(params)),
+        expect: () => [
+              isA<LoadingRegisterState>(),
+              isA<ExceptionRegisterState>(),
+            ]);
+  });
 }
 
 class FirebaseMock extends Mock implements FirebaseAuthService {}
