@@ -13,7 +13,6 @@ class RegisterUsecaseImpl implements IRegisterUsecase {
   @override
   Future<Either<IAppException, Unit>> call(
       RegisterWithEmailParam params) async {
-        
     if (params.email.isEmpty) {
       return left(EmailError());
     }
@@ -25,6 +24,16 @@ class RegisterUsecaseImpl implements IRegisterUsecase {
       return left(PasswordError());
     }
 
-    return repository(params);
+    final result = await repository(params);
+
+    late IAppException exception;
+    if (result.isLeft) {
+      result.fold((l) {
+        exception = RegisterError(message: l.message);
+      }, (r) => null);
+      return left(exception);
+    } else {
+      return right(unit);
+    }
   }
 }

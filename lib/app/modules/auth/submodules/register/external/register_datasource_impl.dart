@@ -1,9 +1,9 @@
-import 'package:selective_collect/app/core/shared/failures/i_app_exception.dart';
-import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.dart';
-import 'package:selective_collect/app/core/types/either.dart';
-import 'package:selective_collect/app/modules/auth/submodules/register/infra/datasources/i_register_datasource.dart';
-
+import '../../../../../core/shared/failures/exceptions.dart';
+import '../../../../../core/shared/failures/i_app_exception.dart';
 import '../../../../../core/shared/failures/register_errors.dart';
+import '../../../../../core/shared/services/auth/i_auth_service.dart';
+import '../../../../../core/types/either.dart';
+import '../infra/datasources/i_register_datasource.dart';
 
 class RegisterDatasourceImpl extends IRegisterDatasource {
   final IAuthService _service;
@@ -15,10 +15,10 @@ class RegisterDatasourceImpl extends IRegisterDatasource {
       RegisterWithEmailParam params) async {
     try {
       await _service.registerWithEmail(params);
-    } catch (e, s) {
-      left(RegisterError(message: e.toString(), stackTrace: s));
-    }
 
-    return right(true);
+      return right(true);
+    } on AuthException catch (e) {
+      return left(RegisterError(message: e.message));
+    }
   }
 }
