@@ -21,7 +21,8 @@ void main() {
   test('Must return a Unit object', () async {
     //Arrange
     final params = LoginEmailParamsMock();
-    when(() => datasouce.call(params)).thenAnswer((_) async => UnitMock());
+    when(() => datasouce.loginDatasourse(params))
+        .thenAnswer((_) async => UnitMock());
 
     //ACT
     final result = await repository.login(params);
@@ -34,7 +35,7 @@ void main() {
     //Arrange
     final params = LoginEmailParamsMock();
 
-    when(() => datasouce.call(params)).thenThrow((_) =>
+    when(() => datasouce.loginDatasourse(params)).thenThrow((_) =>
         left(const AuthException(message: 'De erro meu fi', stackTrace: null)));
 
     //ACT

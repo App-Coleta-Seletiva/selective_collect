@@ -1,10 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:selective_collect/app/core/shared/services/auth/auth_service_firebase_impl.dart';
 import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.dart';
-import 'package:selective_collect/app/core/types/either.dart';
 
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/external/login_datasourse.dart';
@@ -15,7 +11,6 @@ void main() {
   late IAuthService service;
 
   setUp(() {
-
     service = IAuthServiceMock();
   });
   test('should return a dynamic ...', () async {
@@ -27,9 +22,10 @@ void main() {
 
     when(() => service.loginWithEmail(params))
         .thenAnswer((_) => Future.value());
+
     //ACT
     final loginDatasourse = LoginDatasourse(service);
     //Expect
-    expect(()=>loginDatasourse.call(paramType), isA<dynamic>());
+    expect(() => loginDatasourse.loginDatasourse(paramType), isA<dynamic>());
   });
 }

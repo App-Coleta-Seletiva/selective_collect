@@ -13,7 +13,7 @@ class LoginRepository implements ILoginRepository {
   @override
   Future<Either<AuthException, Unit>> login(LoginEmailParamsType params) async {
     try {
-      await _datasource(params);
+      await _datasource.loginDatasourse(params);
       return right(unit);
     } on AuthException catch (e, s) {
       return left(
@@ -30,5 +30,11 @@ class LoginRepository implements ILoginRepository {
         ),
       );
     }
+  }
+
+  @override
+  Future<void> logout() {
+    // TODO: implement logout
+    throw UnimplementedError();
   }
 }

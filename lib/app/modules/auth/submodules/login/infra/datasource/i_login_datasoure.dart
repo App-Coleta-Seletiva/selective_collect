@@ -1,6 +1,5 @@
-
 import '../../domain/types/params_type.dart';
 
 abstract class ILoginDatasouce {
-  Future<dynamic> call(LoginEmailParamsType params);
+  Future<dynamic> loginDatasourse(LoginEmailParamsType params);
 }

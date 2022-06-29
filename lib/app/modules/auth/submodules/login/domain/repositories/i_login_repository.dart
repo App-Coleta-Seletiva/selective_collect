@@ -4,4 +4,5 @@ import '../types/params_type.dart';
 
 abstract class ILoginRepository {
   Future<Either<IAppException, Unit>> login(LoginEmailParamsType params);
+  Future<void> logout();
 }

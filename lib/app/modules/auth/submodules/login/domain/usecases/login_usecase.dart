@@ -19,9 +19,12 @@ class LoginUsecase implements ILoginUsecase {
           message: 'Deve conter @', stackTrace: StackTrace.current));
     }
     if (!LoginParametersType.validatePassword(params.password)) {
-      return left(AuthException(
+      return left(
+        AuthException(
           message: 'Senha deve conter mais de 8 Caracteres',
-          stackTrace: StackTrace.current));
+          stackTrace: StackTrace.current,
+        ),
+      );
     }
 
     return await _repository.login(params);

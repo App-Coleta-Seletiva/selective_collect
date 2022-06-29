@@ -9,8 +9,11 @@ class LoginDatasourse implements ILoginDatasouce {
   LoginDatasourse(IAuthService authService) : _authService = authService;
 
   @override
-  Future<dynamic> call(LoginEmailParamsType params) async {
-    final serviceParam = LoginWithEmailParam(email: params.email, password: params.password);
+  Future<dynamic> loginDatasourse(LoginEmailParamsType params) async {
+    final serviceParam = LoginWithEmailParam(
+      email: params.email,
+      password: params.password,
+    );
 
     await _authService.loginWithEmail(serviceParam);
     return unit;

@@ -42,8 +42,12 @@ void main() {
         LoginEmailParamsType(email: 'teste123gmail.com', password: '12345678');
 
     when(() => repository.login(paramsError)).thenThrow(
-      (_) => left(AuthException(
-          message: 'Deve conter @', stackTrace: StackTrace.current)),
+      (_) => left(
+        AuthException(
+          message: 'Deve conter @',
+          stackTrace: StackTrace.current,
+        ),
+      ),
     );
 
     //ACT
@@ -62,8 +66,9 @@ void main() {
     when(() => repository.login(paramsError)).thenThrow(
       (_) => left(
         AuthException(
-            message: 'Senha deve conter mais de 8 Caracteres',
-            stackTrace: StackTrace.current),
+          message: 'Senha deve conter mais de 8 Caracteres',
+          stackTrace: StackTrace.current,
+        ),
       ),
     );
 
@@ -72,7 +77,9 @@ void main() {
 
     //Expect
     expect(result.fold((l) => l, (r) => r), isA<AuthException>());
-    expect(result.fold((l) => l.message, (r) => r),
-        'Senha deve conter mais de 8 Caracteres');
+    expect(
+      result.fold((l) => l.message, (r) => r),
+      'Senha deve conter mais de 8 Caracteres',
+    );
   });
 }
