@@ -26,14 +26,6 @@ class RegisterUsecaseImpl implements IRegisterUsecase {
 
     final result = await repository(params);
 
-    late IAppException exception;
-    if (result.isLeft) {
-      result.fold((l) {
-        exception = RegisterError(message: l.message);
-      }, (r) => null);
-      return left(exception);
-    } else {
-      return right(unit);
-    }
+    return result;
   }
 }
