@@ -11,12 +11,12 @@ class RegisterDatasourceImpl extends IRegisterDatasource {
   RegisterDatasourceImpl(this._service);
 
   @override
-  Future<Either<IAppException, bool>> registerWithEmail(
+  Future<Either<IAppException, Unit>> registerWithEmail(
       RegisterWithEmailParam params) async {
     try {
       await _service.registerWithEmail(params);
 
-      return right(true);
+      return right(unit);
     } on AuthException catch (e) {
       return left(RegisterError(message: e.message));
     }

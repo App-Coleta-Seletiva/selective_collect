@@ -4,6 +4,6 @@ import '../../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../../../../../../core/types/either.dart';
 
 abstract class IRegisterDatasource {
-  Future<Either<IAppException, bool>> registerWithEmail(
+  Future<Either<IAppException, Unit>> registerWithEmail(
       RegisterWithEmailParam params);
 }
