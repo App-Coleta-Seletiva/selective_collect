@@ -30,7 +30,7 @@ void main() {
         }),
         build: () {
           when(() => registerDatasource.registerWithEmail(params))
-              .thenAnswer((_) async => right(true));
+              .thenAnswer((_) async => right(unit));
           return RegisterBloc(
               RegisterUsecaseImpl(RegisterRepositoryImpl(registerDatasource)));
         },
