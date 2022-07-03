@@ -1,4 +1,4 @@
-import 'package:fpdart/fpdart.dart';
+import '../../../../../../core/types/either.dart';
 import '../entities/register_entity.dart';
 
 import '../../../../../../core/shared/failures/i_app_exception.dart';
