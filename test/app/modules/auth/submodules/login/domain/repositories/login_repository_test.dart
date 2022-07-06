@@ -10,7 +10,7 @@ import 'package:selective_collect/app/modules/auth/submodules/login/infra/dataso
 import '../../../../../../mock/mock.dart';
 
 void main() {
-  late ILoginDatasouce datasouce;
+  late ILoginDatasource datasouce;
 
   late ILoginRepository repository;
 

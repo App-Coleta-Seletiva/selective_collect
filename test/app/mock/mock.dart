@@ -15,9 +15,9 @@ class LoginEntityMock extends Mock implements LoginEntity {}
 
 class UnitMock extends Mock implements Unit {}
 
-class LoginDatasourseMock extends Mock implements ILoginDatasouce {}
+class LoginDatasourseMock extends Mock implements ILoginDatasource {}
 
 class AppExceptionMock extends Mock implements IAppException {}
 
-class IAuthServiceMock extends Mock implements IAuthService{}
+class IAuthServiceMock extends Mock implements IAuthService {}
 //defite tecnico I nos nomes dos mocks

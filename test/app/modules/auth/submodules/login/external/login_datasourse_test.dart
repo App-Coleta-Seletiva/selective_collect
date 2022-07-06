@@ -4,14 +4,17 @@ import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.d
 
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/external/login_datasourse.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/infra/datasource/i_login_datasoure.dart';
 
 import '../../../../../mock/mock.dart';
 
 void main() {
   late IAuthService service;
+  late ILoginDatasource loginDatasource;
 
   setUp(() {
     service = IAuthServiceMock();
+    loginDatasource = LoginDatasourse(service);
   });
   test('should return a dynamic ...', () async {
     //Arrange
@@ -24,14 +27,14 @@ void main() {
         .thenAnswer((_) => Future.value());
 
     //ACT
-    final loginDatasourse = LoginDatasourse(service);
+
     //Expect
-    expect(() => loginDatasourse.loginDatasourse(paramType), isA<dynamic>());
+    expect(() => loginDatasource.loginDatasourse(paramType), isA<dynamic>());
   });
 
-  // test('Must complete Logout', () async {
-  //   when(() => service .logout()).thenAnswer((_) => Future.value());
+  test('Must complete Logout Datasource', () async {
+    when(() => service.logout()).thenAnswer((_) => Future.value());
 
-  //   expect(logoutUsecase(), completes);
-  // });
+    expect(loginDatasource.logout(), completes);
+  });
 }

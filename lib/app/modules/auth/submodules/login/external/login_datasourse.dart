@@ -2,7 +2,7 @@ import '../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../domain/types/params_type.dart';
 import '../infra/datasource/i_login_datasoure.dart';
 
-class LoginDatasourse implements ILoginDatasouce {
+class LoginDatasourse implements ILoginDatasource {
   final IAuthService _authService;
 
   LoginDatasourse(IAuthService authService) : _authService = authService;
@@ -18,8 +18,7 @@ class LoginDatasourse implements ILoginDatasouce {
   }
 
   @override
-  Future logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<dynamic> logout() async {
+    return await _authService.logout();
   }
 }

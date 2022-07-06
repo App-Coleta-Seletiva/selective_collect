@@ -15,7 +15,7 @@ void main() {
     logoutUsecase = LogoutUsecase(loginRepository);
   });
 
-  test('Must complete Logout', () async {
+  test('Must complete Logout Usecase', () async {
     when(() => loginRepository.logout()).thenAnswer((_) => Future.value());
 
     expect(logoutUsecase(), completes);

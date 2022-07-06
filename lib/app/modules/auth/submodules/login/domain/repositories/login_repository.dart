@@ -5,7 +5,7 @@ import '../types/params_type.dart';
 import 'i_login_repository.dart';
 
 class LoginRepository implements ILoginRepository {
-  final ILoginDatasouce _datasource;
+  final ILoginDatasource _datasource;
 
   LoginRepository(this._datasource);
 
