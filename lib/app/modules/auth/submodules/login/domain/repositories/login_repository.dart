@@ -1,9 +1,8 @@
-import '../../../../../../core/shared/failures/exceptions.dart';
 import '../../../../../../core/types/either.dart';
+import '../../exeptions/login_exeptions.dart';
 import '../../infra/datasource/i_login_datasoure.dart';
-
-import 'i_login_repository.dart';
 import '../types/params_type.dart';
+import 'i_login_repository.dart';
 
 class LoginRepository implements ILoginRepository {
   final ILoginDatasouce _datasource;
@@ -11,20 +10,21 @@ class LoginRepository implements ILoginRepository {
   LoginRepository(this._datasource);
 
   @override
-  Future<Either<AuthException, Unit>> login(LoginEmailParamsType params) async {
+  Future<Either<ILoginException, Unit>> login(
+      LoginEmailParamsType params) async {
     try {
       await _datasource.loginDatasourse(params);
       return right(unit);
-    } on AuthException catch (e, s) {
+    } on ILoginException catch (e, s) {
       return left(
-        AuthException(
+        LoginException(
           message: e.toString(),
           stackTrace: s,
         ),
       );
     } catch (e) {
       return left(
-        AuthException(
+        LoginException(
           message: e.toString(),
           stackTrace: StackTrace.empty,
         ),
@@ -33,8 +33,7 @@ class LoginRepository implements ILoginRepository {
   }
 
   @override
-  Future<void> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logout() async {
+    await _datasource.logout();
   }
 }

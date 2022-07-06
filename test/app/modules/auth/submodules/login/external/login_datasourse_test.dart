@@ -28,4 +28,10 @@ void main() {
     //Expect
     expect(() => loginDatasourse.loginDatasourse(paramType), isA<dynamic>());
   });
+
+  // test('Must complete Logout', () async {
+  //   when(() => service .logout()).thenAnswer((_) => Future.value());
+
+  //   expect(logoutUsecase(), completes);
+  // });
 }

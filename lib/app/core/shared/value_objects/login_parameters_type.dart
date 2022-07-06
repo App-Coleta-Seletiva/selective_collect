@@ -8,4 +8,9 @@ class LoginParametersType {
     if (!email.contains('@')) return false;
     return true;
   }
+
+  static bool isEmpty(String email, String password) {
+    if (email.isEmpty || password.isEmpty) return false;
+    return true;
+  }
 }

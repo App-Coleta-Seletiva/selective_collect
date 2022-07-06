@@ -1,3 +1,5 @@
+import 'package:selective_collect/app/modules/auth/submodules/login/exeptions/login_exeptions.dart';
+
 import '../../../../../../core/shared/failures/exceptions.dart';
 import '../../../../../../core/shared/value_objects/login_parameters_type.dart';
 
@@ -13,20 +15,41 @@ class LoginUsecase implements ILoginUsecase {
   LoginUsecase(this._repository);
 
   @override
-  Future<Either<IAppException, Unit>> call(LoginEmailParamsType params) async {
+  Future<Either<ILoginException, Unit>> call(
+      LoginEmailParamsType params) async {
+    if (!LoginParametersType.isEmpty(params.email, params.password)) {
+      return left(
+        LoginException(
+          message: 'Verifique os dados inseridos',
+          stackTrace: StackTrace.current,
+        ),
+      );
+    }
     if (!LoginParametersType.validateEmail(params.email)) {
-      return left(AuthException(
-          message: 'Deve conter @', stackTrace: StackTrace.current));
+      return left(
+        LoginException(
+          message: 'Deve conter @',
+          stackTrace: StackTrace.current,
+        ),
+      );
     }
     if (!LoginParametersType.validatePassword(params.password)) {
       return left(
-        AuthException(
+        LoginException(
           message: 'Senha deve conter mais de 8 Caracteres',
           stackTrace: StackTrace.current,
         ),
       );
     }
-
-    return await _repository.login(params);
+    try {
+      return await _repository.login(params);
+    } catch (e) {
+      return left(
+        LoginException(
+          message: 'Senha deve conter mais de 8 Caracteres',
+          stackTrace: StackTrace.current,
+        ),
+      );
+    }
   }
 }

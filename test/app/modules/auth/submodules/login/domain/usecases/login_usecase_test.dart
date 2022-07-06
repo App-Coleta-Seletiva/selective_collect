@@ -6,6 +6,7 @@ import 'package:selective_collect/app/modules/auth/submodules/login/domain/repos
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/i_login_usecase.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/login_usecase.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/exeptions/login_exeptions.dart';
 
 import '../../../../../../mock/mock.dart';
 
@@ -43,7 +44,7 @@ void main() {
 
     when(() => repository.login(paramsError)).thenThrow(
       (_) => left(
-        AuthException(
+        LoginException(
           message: 'Deve conter @',
           stackTrace: StackTrace.current,
         ),
@@ -54,7 +55,7 @@ void main() {
     final result = await loginUsecase(paramsError);
 
     //Expect
-    expect(result.fold((l) => l, (r) => r), isA<AuthException>());
+    expect(result.fold((l) => l, (r) => r), isA<LoginException>());
     expect(result.fold((l) => l.message, (r) => r), 'Deve conter @');
   });
 
@@ -65,7 +66,7 @@ void main() {
 
     when(() => repository.login(paramsError)).thenThrow(
       (_) => left(
-        AuthException(
+        LoginException(
           message: 'Senha deve conter mais de 8 Caracteres',
           stackTrace: StackTrace.current,
         ),
@@ -76,7 +77,7 @@ void main() {
     final result = await loginUsecase(paramsError);
 
     //Expect
-    expect(result.fold((l) => l, (r) => r), isA<AuthException>());
+    expect(result.fold((l) => l, (r) => r), isA<LoginException>());
     expect(
       result.fold((l) => l.message, (r) => r),
       'Senha deve conter mais de 8 Caracteres',
