@@ -3,8 +3,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:selective_collect/app/core/shared/services/auth/i_auth_service.dart';
 
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
-import 'package:selective_collect/app/modules/auth/submodules/login/external/login_datasourse.dart';
-import 'package:selective_collect/app/modules/auth/submodules/login/infra/datasource/i_login_datasoure.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/external/login_datasource.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/infra/datasource/i_login_datasource.dart';
 
 import '../../../../../mock/mock.dart';
 
@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     service = IAuthServiceMock();
-    loginDatasource = LoginDatasourse(service);
+    loginDatasource = LoginDatasource(service);
   });
   test('should return a dynamic ...', () async {
     //Arrange
@@ -29,7 +29,7 @@ void main() {
     //ACT
 
     //Expect
-    expect(() => loginDatasource.loginDatasourse(paramType), isA<dynamic>());
+    expect(() => loginDatasource.loginDatasource(paramType), isA<dynamic>());
   });
 
   test('Must complete Logout Datasource', () async {

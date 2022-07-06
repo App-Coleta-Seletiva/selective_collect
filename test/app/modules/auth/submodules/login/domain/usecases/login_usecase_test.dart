@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
 import 'package:selective_collect/app/core/types/either.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/repositories/i_login_repository.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';

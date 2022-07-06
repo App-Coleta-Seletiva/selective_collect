@@ -13,7 +13,7 @@ class _HomeLoginState extends State<HomeLogin> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.logout))],
       ),
       body: const Center(
         child: Text('Login Success'),
