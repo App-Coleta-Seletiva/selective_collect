@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                     // print(state.exception.stackTrace);
                   }
                   if (state is LoginSuccess) {
-                    Modular.to.pushNamed('/home');
+                    Modular.to.pushReplacementNamed('/home');
                   }
                   return Column(
                     children: [

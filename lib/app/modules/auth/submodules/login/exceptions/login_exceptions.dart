@@ -1,4 +1,6 @@
-abstract class ILoginException implements Exception {
+import '../../../../../core/shared/failures/i_app_exception.dart';
+
+abstract class ILoginException implements IAppException {
   final String message;
   final StackTrace? stackTrace;
   const ILoginException({

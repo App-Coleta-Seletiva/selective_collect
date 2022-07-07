@@ -1,7 +1,6 @@
-import 'package:selective_collect/app/modules/auth/submodules/login/exeptions/login_exeptions.dart';
-
 import '../../../../../../core/shared/value_objects/login_parameters_type.dart';
 import '../../../../../../core/types/either.dart';
+import '../../exceptions/login_exceptions.dart';
 import '../repositories/i_login_repository.dart';
 import '../types/params_type.dart';
 import 'i_login_usecase.dart';
@@ -37,15 +36,7 @@ class LoginUsecase implements ILoginUsecase {
         ),
       );
     }
-    try {
-      return await _repository.login(params);
-    } catch (e) {
-      return left(
-        LoginException(
-          message: 'Senha deve conter mais de 8 Caracteres',
-          stackTrace: StackTrace.current,
-        ),
-      );
-    }
+
+    return await _repository.login(params);
   }
 }

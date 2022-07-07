@@ -5,7 +5,7 @@ import 'package:selective_collect/app/modules/auth/submodules/login/domain/repos
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/i_login_usecase.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/login_usecase.dart';
-import 'package:selective_collect/app/modules/auth/submodules/login/exeptions/login_exeptions.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/exceptions/login_exceptions.dart';
 
 import '../../../../../../mock/mock.dart';
 

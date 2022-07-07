@@ -1,4 +1,4 @@
-import '../../../exeptions/login_exeptions.dart';
+import '../../../exceptions/login_exceptions.dart';
 
 import '../../../domain/types/params_type.dart';
 

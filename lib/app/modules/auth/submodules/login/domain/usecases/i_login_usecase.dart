@@ -1,5 +1,5 @@
 import '../../../../../../core/types/either.dart';
-import '../../exeptions/login_exeptions.dart';
+import '../../exceptions/login_exceptions.dart';
 import '../types/params_type.dart';
 
 abstract class ILoginUsecase {
