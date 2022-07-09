@@ -1,8 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:selective_collect/app/core/shared/failures/errors.dart';
+import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
 import 'package:selective_collect/app/core/types/either.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/repositories/i_login_repository.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/i_login_usecase.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/login_usecase.dart';
 
@@ -13,6 +14,9 @@ void main() {
 
   late ILoginRepository repository;
 
+  final params =
+      LoginEmailParams(email: 'teste123@gmail.com', password: '12345678');
+
   setUp(() {
     repository = RepositoryMock();
     loginUsecase = LoginUsecase(repository);
@@ -20,10 +24,9 @@ void main() {
 
   test('Must complete the call to login usecase', () async {
     //Arrange
-    final params = LoginEmailParamsMock();
     final unit = UnitMock();
 
-    when(() => repository.call(params)).thenAnswer(
+    when(() => repository.login(params)).thenAnswer(
       (_) async => right(unit),
     );
 
@@ -33,19 +36,23 @@ void main() {
     expect(loginUsecase(params), completes);
   });
 
-  test('Must complete call and return exception', () async {
-    final params = LoginEmailParamsMock();
-
-    when(() => repository.call(params)).thenAnswer(
-      (_) async => left(
-        const PasswordError(
-            message: 'error params', stackTrace: StackTrace.empty),
-      ),
-    );
+  test('Should return AuthExeption if email does not contain @', () async {
+    //Arrange
+    final paramsError =
+        LoginEmailParams(email: 'teste123gmail.com', password: '12345678');
     //ACT
-    final result = await loginUsecase(params);
 
     //Expect
-    expect(result.fold((l) => l, (r) => r), isA<PasswordError>());
+    expect(loginUsecase(paramsError), throwsA(isA<AuthException>()));
+  });
+
+  test('Should return AuthExeption if password is less than 8', () async {
+    //Arrange
+    final paramsError =
+        LoginEmailParams(email: 'teste123@gmail.com', password: '5678');
+    //ACT
+
+    //Expect
+    expect(loginUsecase(paramsError), throwsA(isA<AuthException>()));
   });
 }

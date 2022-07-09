@@ -3,6 +3,7 @@ abstract class IAuthService {
   Future<void> registerWithEmail(RegisterWithEmailParam param);
   Future<void> forgotPassword(String email);
   UserEntityService? getCurrentUser();
+  Future<void> logout();
 }
 
 class UserEntityService {

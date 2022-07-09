@@ -11,7 +11,7 @@ class LoginRepository implements ILoginRepository {
   LoginRepository(this._datasource);
 
   @override
-  Future<Either<AuthException, Unit>> call(LoginEmailParams params) async {
+  Future<Either<AuthException, Unit>> login(LoginEmailParams params) async {
     try {
       await _datasource(params);
       return right(unit);
