@@ -115,4 +115,16 @@ class FirebaseAuthService implements IAuthService {
       }
     }
   }
+
+  @override
+  Future<void> logout() async {
+    try {
+      await _auth.signOut();
+    } on FirebaseAuthException catch (e, stackTrace) {
+      throw AuthException(
+        message: 'Erro ao tentar sair da conta',
+        stackTrace: e.stackTrace ?? stackTrace,
+      );
+    }
+  }
 }
