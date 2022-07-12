@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:selective_collect/app/modules/home/home_module.dart';
 import 'presenter/ui/pages/home.dart';
 import 'presenter/ui/pages/login_page.dart';
 
@@ -19,6 +20,7 @@ class LoginModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (ctx, args) => const LoginPage()),
-    ChildRoute('/home', child: (context, args) => const HomeLogin()),
+    ModuleRoute(Modular.initialRoute, module:HomeModule()),
+    ModuleRoute("/home", module: HomeModule()),
   ];
 }
