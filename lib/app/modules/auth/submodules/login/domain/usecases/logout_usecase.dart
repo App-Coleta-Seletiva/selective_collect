@@ -1,8 +1,8 @@
-import '../../../../../../core/shared/failures/i_app_exception.dart';
+import '../../exceptions/login_exceptions.dart';
 import '../repositories/i_login_repository.dart';
 import 'i_logout_usecase.dart';
 
-import '../../../../../../core/shared/failures/exceptions.dart';
+
 
 class LogoutUsecase implements ILogoutUsecase {
   final ILoginRepository _loginRepository;
@@ -13,8 +13,8 @@ class LogoutUsecase implements ILogoutUsecase {
   Future<void> call() async {
     try {
       _loginRepository.logout();
-    } on IAppException catch (e) {
-      throw AuthException(
+    } on ILoginException catch (e) {
+      throw LoginException(
         message: e.message,
         stackTrace: e.stackTrace,
       );

@@ -1,4 +1,4 @@
-import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
+import '../../../../../../core/shared/failures/exceptions.dart';
 
 import '../../../../../../core/types/either.dart';
 import '../../exceptions/login_exceptions.dart';
@@ -15,15 +15,7 @@ class LoginRepository implements ILoginRepository {
   Future<Either<ILoginException, Unit>> login(
       LoginEmailParamsType params) async {
     try {
-      final result = await _datasource.loginDatasource(params);
-      if (result is AuthException) {
-        return left(
-          LoginException(
-            message: result.message,
-            stackTrace: result.stackTrace,
-          ),
-        );
-      }
+       await _datasource.loginDatasource(params);
       return right(unit);
     } on AuthException catch (e, s) {
       return left(

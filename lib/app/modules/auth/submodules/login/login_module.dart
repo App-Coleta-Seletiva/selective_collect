@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:selective_collect/app/modules/auth/submodules/login/presenter/ui/pages/home.dart';
+import 'presenter/ui/pages/home.dart';
 import 'presenter/ui/pages/login_page.dart';
 
 import 'domain/repositories/login_repository.dart';

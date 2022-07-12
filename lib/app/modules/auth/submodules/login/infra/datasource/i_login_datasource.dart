@@ -1,7 +1,9 @@
+import 'package:selective_collect/app/core/types/either.dart';
+
 import '../../domain/types/params_type.dart';
 
 abstract class ILoginDatasource {
-  Future<dynamic> loginDatasource(LoginEmailParamsType params);
+  Future<Unit> loginDatasource(LoginEmailParamsType params);
 
   Future<dynamic> logout();
 }
