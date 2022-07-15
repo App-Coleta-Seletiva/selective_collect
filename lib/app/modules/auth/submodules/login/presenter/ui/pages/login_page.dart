@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../domain/types/params_type.dart';
+import '../../controllers/login_controller.dart';
 import '../bloc/login_bloc.dart';
-import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
+import '../widgets/custom_elevated_butom.dart';
+import '../widgets/custom_text_butom.dart';
+import '../widgets/custom_text_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,20 +17,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late final LoginBloc loginBloc;
+  final LoginController loginController = LoginController();
+  // late final LoginBloc loginBloc;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    loginBloc = Modular.get<LoginBloc>();
+    // loginController.loginBloc = Modular.get<LoginBloc>();
+    // loginBloc = Modular.get<LoginBloc>();
   }
 
   @override
   void dispose() {
-    if (!loginBloc.isClosed) {
-      loginBloc.close();
+    if (!loginController.loginBloc.isClosed) {
+      loginController.loginBloc.close();
     }
     super.dispose();
   }
@@ -72,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: 'Senha',
               ),
               BlocBuilder<LoginBloc, LoginState>(
-                bloc: loginBloc,
+                bloc: loginController.loginBloc,
                 builder: (_, state) {
                   if (state is LoginError) {
                     showSnackBar(state.exception.message);
@@ -80,7 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                     // print(state.exception.stackTrace);
                   }
                   if (state is LoginSuccess) {
-                    Modular.to.pushReplacementNamed('/home');
+                    Modular.to.pushReplacementNamed('/home_page_login');
+                    ScaffoldMessenger.of(context).clearSnackBars();
                   }
                   return Column(
                     children: [
@@ -95,72 +100,21 @@ class _LoginPageState extends State<LoginPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    final params = LoginEmailParamsType(
-                                      email: emailController.text,
-                                      password: passwordController.text,
-                                    );
-                                    loginBloc.add(NewLoginEvent(params));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
-                                    elevation: 7,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 12.0,
-                                      vertical: 10,
-                                    ),
-                                    child: Text(
-                                      'Login',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        wordSpacing: 20,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                              CustomElevatedButom(
+                                title: 'Login',
+                                onPressed: () {
+                                  loginController.login(emailController.text,
+                                      passwordController.text);
+                                },
                               ),
                               const SizedBox(width: 20),
-                              Expanded(
-                                child: TextButton(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                    elevation: 0,
-                                    primary: Colors.black.withOpacity(0.2),
-                                    shadowColor: Colors.transparent,
-                                    side: const BorderSide(
-                                      width: 2,
-                                      color: Colors.green,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    enableFeedback: false,
-                                    visualDensity: VisualDensity.compact,
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 10,
-                                    ),
-                                    child: Text(
-                                      'Cadastre-se',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        wordSpacing: 20,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                              CustomTextButom(
+                                title: 'Cadastre-se',
+                                onPressed: () {
+                                  Modular.to.pushNamed('/register_module/');
+                                  ScaffoldMessenger.of(context)
+                                      .clearSnackBars();
+                                },
                               ),
                             ],
                           ),
@@ -170,52 +124,18 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
               ),
+              TextButton(
+                onPressed: () {
+                  // Modular.to.pushNamed('/forgot_password_module/');
+                  print('Falta implementar Forgot');
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                },
+                child: const Text(
+                  'Esqueci minha senha',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextFormField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  const CustomTextFormField(
-      {Key? key, required this.controller, required this.hintText})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28.0),
-      child: TextFormField(
-        controller: controller,
-        keyboardType: TextInputType.emailAddress,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-          color: Colors.white,
-        ),
-        decoration: InputDecoration(
-          fillColor: Colors.black.withOpacity(0.2),
-          filled: true,
-          hintText: hintText,
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.white, width: 2),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
       ),
