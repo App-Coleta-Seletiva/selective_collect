@@ -14,7 +14,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
   runApp(
     ModularApp(
       module: AppModule(),
