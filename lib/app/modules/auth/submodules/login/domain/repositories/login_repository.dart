@@ -1,3 +1,5 @@
+import '../entities/login_entity.dart';
+
 import '../../../../../../core/shared/failures/exceptions.dart';
 
 import '../../../../../../core/types/either.dart';
@@ -15,7 +17,7 @@ class LoginRepository implements ILoginRepository {
   Future<Either<ILoginException, Unit>> login(
       LoginEmailParamsType params) async {
     try {
-       await _datasource.loginDatasource(params);
+      await _datasource.loginDatasource(params);
       return right(unit);
     } on AuthException catch (e, s) {
       return left(
@@ -30,5 +32,14 @@ class LoginRepository implements ILoginRepository {
   @override
   Future<void> logout() async {
     await _datasource.logout();
+  }
+
+  @override
+  Either<ILoginException, LoginEntity> getCurrentUserdatasource() {
+    try {
+      return right(_datasource.getCurrentUserdatasource());
+    } on LoginException catch (e) {
+      left(throw LoginException(message: e.message, stackTrace: e.stackTrace));
+    }
   }
 }

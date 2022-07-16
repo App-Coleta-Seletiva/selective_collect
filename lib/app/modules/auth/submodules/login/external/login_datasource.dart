@@ -1,4 +1,6 @@
-import 'package:selective_collect/app/core/types/either.dart';
+import '../../../../../core/types/either.dart';
+import '../domain/entities/login_entity.dart';
+import '../exceptions/login_exceptions.dart';
 
 import '../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../domain/types/params_type.dart';
@@ -22,5 +24,15 @@ class LoginDatasource implements ILoginDatasource {
   @override
   Future<dynamic> logout() async {
     return await _authService.logout();
+  }
+
+  @override
+  LoginEntity getCurrentUserdatasource() {
+    final user = _authService.getCurrentUser();
+    if (user == null) {
+      throw LoginException(
+          message: 'Usuario NULL', stackTrace: StackTrace.current);
+    }
+    return LoginEntity(email: user.email);
   }
 }

@@ -127,4 +127,5 @@ class FirebaseAuthService implements IAuthService {
       );
     }
   }
+
 }
