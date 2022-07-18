@@ -5,7 +5,6 @@ import '../../domain/types/params_type.dart';
 
 abstract class ILoginDatasource {
   Future<Unit> loginDatasource(LoginEmailParamsType params);
-LoginEntity getCurrentUserdatasource();
+  dynamic getCurrentUserdatasource();
   Future<dynamic> logout();
-
 }

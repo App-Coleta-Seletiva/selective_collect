@@ -1,6 +1,5 @@
 import '../../../../../core/types/either.dart';
-import '../domain/entities/login_entity.dart';
-import '../exceptions/login_exceptions.dart';
+import '../domain/exceptions/login_exceptions.dart';
 
 import '../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../domain/types/params_type.dart';
@@ -27,12 +26,12 @@ class LoginDatasource implements ILoginDatasource {
   }
 
   @override
-  LoginEntity getCurrentUserdatasource() {
-    final user = _authService.getCurrentUser();
-    if (user == null) {
+  dynamic getCurrentUserdatasource() {
+    final userEmail = _authService.getCurrentUser();
+    if (userEmail == null) {
       throw LoginException(
           message: 'Usuario NULL', stackTrace: StackTrace.current);
     }
-    return LoginEntity(email: user.email);
+    return userEmail;
   }
 }

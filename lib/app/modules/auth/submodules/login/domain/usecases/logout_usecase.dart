@@ -1,4 +1,5 @@
-import '../../exceptions/login_exceptions.dart';
+import '../exceptions/login_exceptions.dart';
+
 import '../repositories/i_login_repository.dart';
 import 'i_logout_usecase.dart';
 

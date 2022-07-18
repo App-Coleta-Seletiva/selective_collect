@@ -1,6 +1,6 @@
 import '../../../../../../core/shared/value_objects/login_parameters_type.dart';
 import '../../../../../../core/types/either.dart';
-import '../../exceptions/login_exceptions.dart';
+import '../exceptions/login_exceptions.dart';
 import '../repositories/i_login_repository.dart';
 import '../types/params_type.dart';
 import 'i_login_usecase.dart';
