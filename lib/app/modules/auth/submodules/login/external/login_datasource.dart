@@ -26,12 +26,14 @@ class LoginDatasource implements ILoginDatasource {
   }
 
   @override
-  dynamic getCurrentUserdatasource() {
-    final userEmail = _authService.getCurrentUser();
-    if (userEmail == null) {
+  dynamic getCurrentUserDatasource() {
+    final user = _authService.getCurrentUser();
+    if (user == null) {
       throw LoginException(
-          message: 'Usuario NULL', stackTrace: StackTrace.current);
+        message: 'Usuario NULL',
+        stackTrace: StackTrace.current,
+      );
     }
-    return userEmail;
+    return user;
   }
 }

@@ -1,3 +1,4 @@
+import '../../infra/adapters/login_adapter.dart';
 import '../entities/login_entity.dart';
 
 import '../../../../../../core/shared/failures/exceptions.dart';
@@ -35,11 +36,19 @@ class LoginRepository implements ILoginRepository {
   }
 
   @override
-  Either<ILoginException, LoginEntity> getCurrentUserdatasource() {
+  Either<ILoginException, LoginEntity> getCurrentUser() {
     try {
-      return right(_datasource.getCurrentUserdatasource());
+      final result = _datasource.getCurrentUserDatasource();
+      return right(
+        LoginEntityAdapter.fromUserEntityService(result),
+      );
     } on LoginException catch (e) {
-      left(throw LoginException(message: e.message, stackTrace: e.stackTrace));
+      left(
+        throw LoginException(
+          message: e.message,
+          stackTrace: e.stackTrace,
+        ),
+      );
     }
   }
 }

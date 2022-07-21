@@ -4,5 +4,5 @@ import '../entities/login_entity.dart';
 import '../exceptions/login_exceptions.dart';
 
 abstract class IGetCurrentuserUsecase {
-  Either<ILoginException, LoginEntity>   getCurrentUserUsecase();
+  Either<ILoginException, LoginEntity> call();
 }
