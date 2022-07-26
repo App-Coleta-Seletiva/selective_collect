@@ -21,14 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   // late final LoginBloc loginBloc;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    // loginController.loginBloc = Modular.get<LoginBloc>();
-    // loginBloc = Modular.get<LoginBloc>();
-  }
-
+  
   @override
   void dispose() {
     if (!loginController.loginBloc.isClosed) {
