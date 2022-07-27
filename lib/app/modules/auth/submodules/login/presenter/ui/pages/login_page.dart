@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../controllers/login_controller.dart';
 import '../bloc/login_bloc.dart';
-import '../bloc/login_state.dart';
+import '../bloc/state/login_state.dart';
 import '../widgets/custom_elevated_butom.dart';
 import '../widgets/custom_text_butom.dart';
 import '../widgets/custom_text_field.dart';
@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   // late final LoginBloc loginBloc;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
+
   @override
   void dispose() {
     if (!loginController.loginBloc.isClosed) {

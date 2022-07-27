@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/usecases/i_login_usecase.dart';
 
-import 'login_event.dart';
-import 'login_state.dart';
+import 'event/login_event.dart';
+import 'state/login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final ILoginUsecase loginUsecase;

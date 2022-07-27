@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../domain/types/params_type.dart';
-import '../ui/bloc/login_event.dart' show NewLoginEvent;
+import '../ui/bloc/event/login_event.dart';
 
 import '../ui/bloc/login_bloc.dart';
 

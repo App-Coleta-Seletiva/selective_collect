@@ -4,6 +4,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:selective_collect/app/modules/splash/bloc/current_user_bloc.dart';
 import 'package:selective_collect/app/modules/splash/bloc/state/current_user_state.dart';
 
+import '../bloc/event/current_user_event.dart';
+
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
 
@@ -13,6 +15,12 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   final currentBloc = Modular.get<CurrentUserBloc>();
+  @override
+  void initState() {
+    super.initState();
+    currentBloc.add(CheckCurrentUserEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width / 100;

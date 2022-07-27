@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:selective_collect/app/modules/splash/models/current_user_model.dart';
+import '../models/current_user_model.dart';
 
 import '../../auth/submodules/login/domain/usecases/i_get_current_user_usecase.dart';
 

@@ -1,6 +1,6 @@
-import '../../../domain/exceptions/login_exceptions.dart';
+import '../../../../domain/exceptions/login_exceptions.dart';
 
-import '../../../domain/types/params_type.dart';
+import '../../../../domain/types/params_type.dart';
 
 abstract class LoginState {}
 

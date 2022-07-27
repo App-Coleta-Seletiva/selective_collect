@@ -1,4 +1,4 @@
-import '../../../domain/types/params_type.dart';
+import '../../../../domain/types/params_type.dart';
 
 abstract class LoginEvent {}
 

@@ -1,4 +1,4 @@
-import 'package:selective_collect/app/core/types/either.dart';
+import '../../../../../../core/types/either.dart';
 
 import '../entities/login_entity.dart';
 import '../exceptions/login_exceptions.dart';
