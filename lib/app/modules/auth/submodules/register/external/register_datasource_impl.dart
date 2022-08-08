@@ -15,7 +15,6 @@ class RegisterDatasourceImpl extends IRegisterDatasource {
       RegisterWithEmailParam params) async {
     try {
       await _service.registerWithEmail(params);
-
       return right(unit);
     } on AuthException catch (e) {
       return left(RegisterError(message: e.message));
