@@ -43,8 +43,8 @@ class LoginRepository implements ILoginRepository {
         LoginEntityAdapter.fromUserEntityService(result),
       );
     } on LoginException catch (e) {
-      left(
-        throw LoginException(
+      return left(
+        LoginException(
           message: e.message,
           stackTrace: e.stackTrace,
         ),

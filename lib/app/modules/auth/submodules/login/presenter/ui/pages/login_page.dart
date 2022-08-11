@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                     // print(state.exception.stackTrace);
                   }
                   if (state is LoginSuccess) {
-                    Modular.to.pushReplacementNamed('/home_page_login');
+                    Modular.to.pushReplacementNamed('/home_page');
                     ScaffoldMessenger.of(context).clearSnackBars();
                   }
                   return Column(
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                               CustomTextButom(
                                 title: 'Cadastre-se',
                                 onPressed: () {
-                                  Modular.to.pushNamed('/register_module/');
+                                  Modular.to.pushNamed('/register_module');
                                   ScaffoldMessenger.of(context)
                                       .clearSnackBars();
                                 },

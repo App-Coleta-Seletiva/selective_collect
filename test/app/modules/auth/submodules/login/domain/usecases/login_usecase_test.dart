@@ -18,7 +18,7 @@ void main() {
       LoginEmailParamsType(email: 'teste123@gmail.com', password: '12345678');
 
   setUp(() {
-    repository = RepositoryMock();
+    repository = IRepositoryMock();
     loginUsecase = LoginUsecase(repository);
   });
 

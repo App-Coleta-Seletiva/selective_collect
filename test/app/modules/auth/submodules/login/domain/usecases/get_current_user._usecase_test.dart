@@ -14,7 +14,7 @@ void main() {
   late ILoginRepository repository;
 
   setUp(() {
-    repository = RepositoryMock();
+    repository = IRepositoryMock();
     getCurrentuserUsecase = GetCurrentUser(repository);
   });
 

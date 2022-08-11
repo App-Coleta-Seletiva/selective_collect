@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../models/current_user_model.dart';
 
 import '../../auth/submodules/login/domain/usecases/i_get_current_user_usecase.dart';
 
@@ -19,10 +18,10 @@ class CurrentUserBloc extends Bloc<CheckCurrentUserEvent, CurrentUserState> {
     final result = _currentuserUsecase();
 
     result.fold(
-      (l) => CurrentUserError(l),
+      (l) => emit(CurrentUserError(l)),
       (r) {
-        final currentModel = r as CurrentUserModel;
-        CurrentUserSuccess(currentUserModel: currentModel);
+        // final currentModel = r as CurrentUserModel;
+        emit(CurrentUserSuccess(currentUserModel: r));
       },
     );
   }

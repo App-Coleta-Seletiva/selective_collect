@@ -11,7 +11,7 @@ void main() {
   late ILogoutUsecase logoutUsecase;
 
   setUp(() {
-    loginRepository = RepositoryMock();
+    loginRepository = IRepositoryMock();
     logoutUsecase = LogoutUsecase(loginRepository);
   });
 

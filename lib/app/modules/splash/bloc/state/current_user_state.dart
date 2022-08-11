@@ -1,5 +1,6 @@
+import '../../../auth/submodules/login/domain/entities/login_entity.dart';
+
 import '../../../auth/submodules/login/domain/exceptions/login_exceptions.dart';
-import '../../models/current_user_model.dart';
 
 abstract class CurrentUserState {}
 
@@ -8,7 +9,7 @@ class CurrentUserInitial extends CurrentUserState {}
 class CurrentUserLoading extends CurrentUserState {}
 
 class CurrentUserSuccess extends CurrentUserState {
-  final CurrentUserModel currentUserModel;
+  final LoginEntity currentUserModel;
   CurrentUserSuccess({required this.currentUserModel});
 }
 

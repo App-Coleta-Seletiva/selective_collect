@@ -7,7 +7,7 @@ import 'package:selective_collect/app/modules/auth/submodules/login/domain/repos
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/infra/datasource/i_login_datasource.dart';
 
-class RepositoryMock extends Mock implements ILoginRepository {}
+class IRepositoryMock extends Mock implements ILoginRepository {}
 
 class LoginEmailParamsMock extends Mock implements LoginEmailParamsType {}
 
@@ -15,9 +15,11 @@ class LoginEntityMock extends Mock implements LoginEntity {}
 
 class UnitMock extends Mock implements Unit {}
 
-class LoginDatasourceMock extends Mock implements ILoginDatasource {}
+class ILoginDatasourceMock extends Mock implements ILoginDatasource {}
 
-class AppExceptionMock extends Mock implements IAppException {}
+class ILoginRepositoryMock extends Mock implements ILoginRepository {}
+
+class IAppExceptionMock extends Mock implements IAppException {}
 
 class IAuthServiceMock extends Mock implements IAuthService {}
 //defite tecnico I nos nomes dos mocks

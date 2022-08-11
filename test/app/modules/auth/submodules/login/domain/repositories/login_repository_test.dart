@@ -15,7 +15,7 @@ void main() {
   late ILoginRepository repository;
 
   setUp(() {
-    datasouce = LoginDatasourceMock();
+    datasouce = ILoginDatasourceMock();
     repository = LoginRepository(datasouce);
   });
 
