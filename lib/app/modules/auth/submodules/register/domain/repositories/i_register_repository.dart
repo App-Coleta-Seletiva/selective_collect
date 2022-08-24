@@ -3,7 +3,5 @@ import '../../../../../../core/shared/services/auth/i_auth_service.dart';
 import '../../../../../../core/types/either.dart';
 
 abstract class IRegisterRepository {
-  Future<Either<IAppException, Unit>> call(
-      RegisterWithEmailParam params); 
-
+  Future<Either<IAppException, Unit>> call(RegisterWithEmailParam params);
 }
