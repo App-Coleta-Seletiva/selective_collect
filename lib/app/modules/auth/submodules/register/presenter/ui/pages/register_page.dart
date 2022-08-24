@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../../../core/shared/services/auth/auth_service_firebase_impl.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../../../core/shared/services/auth/i_auth_service.dart';
-import '../../../domain/usecases/register_usecase_impl.dart';
-import '../../../external/register_datasource_impl.dart';
-import '../../../infra/repositories/register_repository_impl.dart';
 import '../bloc/register_bloc.dart';
 import '../bloc/register_event.dart';
 import '../bloc/register_states.dart';
@@ -27,8 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
   void initState() {
     super.initState();
     auth = FirebaseAuth.instance;
-    bloc = RegisterBloc(RegisterUsecaseImpl(RegisterRepositoryImpl(
-        RegisterDatasourceImpl(FirebaseAuthService(auth)))));
+    bloc = Modular.get<RegisterBloc>();
     email = TextEditingController();
     password = TextEditingController();
   }

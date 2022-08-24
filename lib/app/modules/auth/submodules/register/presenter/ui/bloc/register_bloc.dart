@@ -13,7 +13,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   Future<void> _register(RegisterUser event, emit) async {
     emit(LoadingRegisterState());
-    final result = await register.call(event.params);
+    final result = await register(event.params);
     result.fold(
       (l) => emit(ExceptionRegisterState(l as IErrosRegister)),
       (r) => emit(SuccessRegisterState()),
