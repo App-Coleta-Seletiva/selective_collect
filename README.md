@@ -1,5 +1,17 @@
 # Selective Collection
 
+## Description
+
+This project only exists because of the effort of the volunteer team that dedicates time and 
+good will to face the challenge of developing a mobile system that will help in the selective 
+collection of garbage and will be made available to collectors and cooperatives.
+
+## Descrição
+
+Esse projeto só existe por esforço da equipe voluntária que dedica tempo e boa vontade 
+em encarar o desafio de desenvolver um sistema mobile que vai  ajudar na coleta seletiva 
+de lixo e será disponibilizado para catadores e cooperativas.
+
 ## Project's General View 
 
 ### Engineer:
