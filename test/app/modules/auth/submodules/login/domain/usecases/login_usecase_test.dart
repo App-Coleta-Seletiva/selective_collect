@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:selective_collect/app/core/shared/failures/exceptions.dart';
 import 'package:selective_collect/app/core/types/either.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/domain/exceptions/login_exceptions.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/repositories/i_login_repository.dart';
-import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params.dart';
+import 'package:selective_collect/app/modules/auth/submodules/login/domain/types/params_type.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/i_login_usecase.dart';
 import 'package:selective_collect/app/modules/auth/submodules/login/domain/usecases/login_usecase.dart';
 
@@ -15,10 +15,10 @@ void main() {
   late ILoginRepository repository;
 
   final params =
-      LoginEmailParams(email: 'teste123@gmail.com', password: '12345678');
+      LoginEmailParamsType(email: 'teste123@gmail.com', password: '12345678');
 
   setUp(() {
-    repository = RepositoryMock();
+    repository = IRepositoryMock();
     loginUsecase = LoginUsecase(repository);
   });
 
@@ -39,20 +39,47 @@ void main() {
   test('Should return AuthExeption if email does not contain @', () async {
     //Arrange
     final paramsError =
-        LoginEmailParams(email: 'teste123gmail.com', password: '12345678');
+        LoginEmailParamsType(email: 'teste123gmail.com', password: '12345678');
+
+    when(() => repository.login(paramsError)).thenThrow(
+      (_) => left(
+        LoginException(
+          message: 'Deve conter @',
+          stackTrace: StackTrace.current,
+        ),
+      ),
+    );
+
     //ACT
+    final result = await loginUsecase(paramsError);
 
     //Expect
-    expect(loginUsecase(paramsError), throwsA(isA<AuthException>()));
+    expect(result.fold((l) => l, (r) => r), isA<LoginException>());
+    expect(result.fold((l) => l.message, (r) => r), 'Deve conter @');
   });
 
   test('Should return AuthExeption if password is less than 8', () async {
     //Arrange
     final paramsError =
-        LoginEmailParams(email: 'teste123@gmail.com', password: '5678');
+        LoginEmailParamsType(email: 'teste123@gmail.com', password: '5678');
+
+    when(() => repository.login(paramsError)).thenThrow(
+      (_) => left(
+        LoginException(
+          message: 'Senha deve conter mais de 8 Caracteres',
+          stackTrace: StackTrace.current,
+        ),
+      ),
+    );
+
     //ACT
+    final result = await loginUsecase(paramsError);
 
     //Expect
-    expect(loginUsecase(paramsError), throwsA(isA<AuthException>()));
+    expect(result.fold((l) => l, (r) => r), isA<LoginException>());
+    expect(
+      result.fold((l) => l.message, (r) => r),
+      'Senha deve conter mais de 8 Caracteres',
+    );
   });
 }

@@ -1,7 +1,10 @@
-import '../../../../../../core/shared/failures/i_app_exception.dart';
 import '../../../../../../core/types/either.dart';
-import '../types/params.dart';
+import '../entities/login_entity.dart';
+import '../exceptions/login_exceptions.dart';
+import '../types/params_type.dart';
 
 abstract class ILoginRepository {
-  Future<Either<IAppException, Unit>> login(LoginEmailParams params);
+  Future<Either<ILoginException, Unit>> login(LoginEmailParamsType params);
+  Either<ILoginException, LoginEntity> getCurrentUser();
+  Future<void> logout();
 }

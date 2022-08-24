@@ -1,7 +1,7 @@
-import '../../../../../../core/shared/failures/i_app_exception.dart';
 import '../../../../../../core/types/either.dart';
-import '../types/params.dart';
+import '../exceptions/login_exceptions.dart';
+import '../types/params_type.dart';
 
 abstract class ILoginUsecase {
-  Future<Either<IAppException, Unit>> call(LoginEmailParams params);
+  Future<Either<ILoginException, Unit>> call(LoginEmailParamsType params);
 }
