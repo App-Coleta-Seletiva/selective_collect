@@ -54,6 +54,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   textControllerEmail.selection;
                   message(state.failure.message);
                 }
+                if (state is ForgotPasswordSucess) {
+                  message("Solicitação enviada com sucesso!");
+                }
                 return Column(
                   children: <Widget>[
                     TextFormField(
@@ -108,21 +111,21 @@ class _ButtonProgressWidgetState extends State<ButtonProgressWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var _isLoading = (widget.bloc.state is ForgotPasswordLoading);
+    var isLoading = (widget.bloc.state is ForgotPasswordLoading);
     return GestureDetector(
-      onTap: _isLoading ? () {} : recover,
+      onTap: isLoading ? () {} : recover,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeIn,
         alignment: Alignment.center,
-        width: _isLoading ? 60 : 200,
+        width: isLoading ? 60 : 200,
         height: 60,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(100),
         ),
-        child: _isLoading
+        child: isLoading
             ? CircularProgressIndicator(
                 color: Theme.of(context).dialogBackgroundColor,
               )
@@ -130,6 +133,7 @@ class _ButtonProgressWidgetState extends State<ButtonProgressWidget> {
                 "Recuperar senha",
                 softWrap: false,
                 style: TextStyle(
+                  fontSize: 18,
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
