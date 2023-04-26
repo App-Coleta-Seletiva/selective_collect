@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.selective.collect.selective_collect">
+	 <uses-permission android:name="android.permission.INTERNET"/>
+	 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
-        android:label="selective_collect"
+	 			android:usesCleartextTraffic="true"
+
+				android:label="selective_collect"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
