@@ -1,4 +1,4 @@
-import 'package:selective_collect/app/core/shared/failures/i_app_exception.dart';
+import 'i_app_exception.dart';
 
 class AppError extends IAppException {
   const AppError({

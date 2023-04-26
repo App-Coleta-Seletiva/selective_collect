@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+package-lock.json
 
 # IntelliJ related
 *.iml
@@ -30,6 +31,13 @@
 .pub-cache/
 .pub/
 /build/
+
+#FVM
+.fvm/
+.fvm/flutter_sdk
+
+#VSCODE
+.vscode/
 
 # Web related
 lib/generated_plugin_registrant.dart
